@@ -77,51 +77,33 @@ for method_name, func in [
     curse(list, method_name, func)
 
 
-# === range class extensions ===
-for method_name, func in [
-        ('to_list',  common_to_list),
-        ('map',      common_map),
-        ('filter',   common_filter),
-        ('inject',   common_inject),
-        ('reduce',   common_inject),
-        ('take',     common_take),
-        ('drop',     common_drop),
-        ('group_by', common_group_by),
-        ('compact',  common_compact),
-        ('to_iter',  common_to_iter),
-]:
-    curse(range, method_name, func)
+# === Extensions of iterable classes ===
 
+# TODO: Add all builtin iterator classes in https://github.com/python/cpython/blob/5ce0a2a100909104836f53a2c8823006ec46f8ad/Lib/_collections_abc.py
+# Get <class 'list_iterator'>
+list_literator = type(iter([]))
+# Get <class 'range_iterator'>
+range_iterator = type(iter(range(0)))
 
-# === map class extensions ===
-for method_name, func in [
-        ('to_list',  common_to_list),
-        ('map',      common_map),
-        ('filter',   common_filter),
-        ('inject',   common_inject),
-        ('reduce',   common_inject),
-        ('take',     common_take),
-        ('drop',     common_drop),
-        ('group_by', common_group_by),
-        ('compact',  common_compact),
-        ('to_iter',  common_to_iter),
-]:
-    curse(map, method_name, func)
-
-
-# === filter class extensions ===
-for method_name, func in [
-        ('to_list',  common_to_list),
-        ('map',      common_map),
-        ('filter',   common_filter),
-        ('inject',   common_inject),
-        ('reduce',   common_inject),
-        ('take',     common_take),
-        ('drop',     common_drop),
-        ('group_by', common_group_by),
-        ('compact',  common_compact),
-        ('to_iter',  common_to_iter),
-]:
-    curse(filter, method_name, func)
-
-# TODO: Add methods to <class 'zip'>
+for iterable_class in [
+        range,
+        map,
+        filter,
+        zip,
+        enumerate,
+        list_literator,
+        range_iterator,
+    ]:
+    for method_name, func in [
+            ('to_list',  common_to_list),
+            ('map',      common_map),
+            ('filter',   common_filter),
+            ('inject',   common_inject),
+            ('reduce',   common_inject),
+            ('take',     common_take),
+            ('drop',     common_drop),
+            ('group_by', common_group_by),
+            ('compact',  common_compact),
+            ('to_iter',  common_to_iter),
+    ]:
+        curse(iterable_class, method_name, func)

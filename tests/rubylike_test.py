@@ -79,6 +79,18 @@ class RubylikeTest(unittest.TestCase):
       for actual, expect in zip(itr, [1, 2, 3, 4, 5]):
         self.assertEqual(actual, expect)
 
+
+
+
+  def test_map_map(self):
+    """
+    Test of map#map
+    """
+    mapped = map(lambda e: e, [1, 2, 3]).map(lambda x: x * 2)
+    for actual, expect in zip(mapped, [2, 4, 6]):
+      self.assertEqual(actual, expect)
+
+
   # TODO: Test other classes not only <class 'list'>
 
 def suite():

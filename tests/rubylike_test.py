@@ -28,6 +28,17 @@ class RubylikeTest(unittest.TestCase):
     expect = [2]
     self.assertEqual(actual, expect)
 
+  def test_list_inject(self):
+    """
+    Test of list#inject
+    """
+    actual = [1, 2, 3].inject(lambda s, e: s + e)
+    expect = 6
+    self.assertEqual(actual, expect)
+    actual = [1, 2, 3].inject(100, lambda s, e: s + e)
+    expect = 106
+    self.assertEqual(actual, expect)
+
 
 def suite():
   suite = unittest.TestSuite()

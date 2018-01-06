@@ -16,7 +16,7 @@ class RubylikeTest(unittest.TestCase):
     """
     Test of list#map
     """
-    actual = [1, 2, 3].map(lambda x: x*2).to_list()
+    actual = [1, 2, 3].map(lambda x: x*2)
     expect = [2, 4, 6]
     self.assertEqual(actual, expect)
 
@@ -24,7 +24,7 @@ class RubylikeTest(unittest.TestCase):
     """
     Test of list#filter
     """
-    actual = [1, 2, 3].filter(lambda x: x % 2 == 0).to_list()
+    actual = [1, 2, 3].filter(lambda x: x % 2 == 0)
     expect = [2]
     self.assertEqual(actual, expect)
 
@@ -67,7 +67,7 @@ class RubylikeTest(unittest.TestCase):
       """
       Test of list#compact
       """
-      actual = [1, 2, None, 4, None, 6].compact().to_list()
+      actual = [1, 2, None, 4, None, 6].compact()
       expect = [1, 2, 4, 6]
       self.assertEqual(actual, expect)
 

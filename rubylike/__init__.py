@@ -51,20 +51,24 @@ def object_to_str(self):
 curse(object, 'to_str', object_to_str)
 
 # === list class extensions ===
+
+def wrap_list_func(func):
+    return lambda *args, **kwargs: list(func(*args, **kwargs))
+
 def list_length(self):
     return len(self)
 
 for method_name, func in [
         ('to_list',  common_to_list),
-        ('map',      common_map),
-        ('filter',   common_filter),
+        ('map',      wrap_list_func(common_map)),
+        ('filter',   wrap_list_func(common_filter)),
         ('length',   list_length),
         ('inject',   common_inject),
         ('reduce',   common_inject),
-        ('take',     common_take),
-        ('drop',     common_drop),
+        ('take',     wrap_list_func(common_take)),
+        ('drop',     wrap_list_func(common_drop)),
         ('group_by', common_group_by),
-        ('compact',  common_compact),
+        ('compact',  wrap_list_func(common_compact)),
     ]:
     curse(list, method_name, func)
 

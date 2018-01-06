@@ -42,6 +42,9 @@ def common_group_by(iter, f):
             dict[group] = [e]
     return dict
 
+def common_compact(iter):
+    return filter(lambda e: e is not None, iter)
+
 # === object class extensions ===
 def object_to_str(self):
     return str(self)
@@ -61,6 +64,7 @@ for method_name, func in [
         ('take',     common_take),
         ('drop',     common_drop),
         ('group_by', common_group_by),
+        ('compact',  common_compact),
     ]:
     curse(list, method_name, func)
 
@@ -75,6 +79,7 @@ for method_name, func in [
         ('take',     common_take),
         ('drop',     common_drop),
         ('group_by', common_group_by),
+        ('compact',  common_compact),
 ]:
     curse(range, method_name, func)
 
@@ -89,7 +94,7 @@ for method_name, func in [
         ('take',     common_take),
         ('drop',     common_drop),
         ('group_by', common_group_by),
-
+        ('compact',  common_compact),
 ]:
     curse(map, method_name, func)
 
@@ -104,5 +109,6 @@ for method_name, func in [
         ('take',     common_take),
         ('drop',     common_drop),
         ('group_by', common_group_by),
-    ]:
+        ('compact',  common_compact),
+]:
     curse(filter, method_name, func)

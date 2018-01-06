@@ -57,12 +57,19 @@ class RubylikeTest(unittest.TestCase):
 
   def test_list_group_by(self):
     """
-    Test of list#inject
+    Test of list#group_by
     """
     actual = [1, 2, 3, 4, 5, 6].group_by(lambda e: e % 2 == 0)
     expect = {True: [2, 4, 6], False: [1, 3, 5]}
     self.assertEqual(actual, expect)
 
+  def test_list_compact(self):
+      """
+      Test of list#compact
+      """
+      actual = [1, 2, None, 4, None, 6].compact().to_list()
+      expect = [1, 2, 4, 6]
+      self.assertEqual(actual, expect)
 
   # TODO: Test other classes not only <class 'list'>
 

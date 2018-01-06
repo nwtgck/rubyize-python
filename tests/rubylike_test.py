@@ -1,7 +1,7 @@
 import unittest
-import rubylike
+import rubyize
 
-class RubylikeTest(unittest.TestCase):
+class RubyizeTest(unittest.TestCase):
 
   def test_list_length(self):
     """
@@ -95,5 +95,5 @@ class RubylikeTest(unittest.TestCase):
 
 def suite():
   suite = unittest.TestSuite()
-  suite.addTest(unittest.makeSuite(RubylikeTest))
+  suite.addTest(unittest.makeSuite(RubyizeTest))
   return suite

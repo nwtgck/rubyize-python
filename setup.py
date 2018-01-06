@@ -8,13 +8,13 @@ import sys
 sys.path.append('./tests')
 
 setup(
-    name='rubylike',
+    name='rubyize',
     version='0.1.0-SNAPSHOT',
     description='Write Python in Ruby-like way',
     author='Ryo Ota',
     author_email='nwtgck@gmail.com',
     install_requires=['forbiddenfruit'],
-    py_modules=["rubylike"],
+    py_modules=["rubyize"],
     packages=find_packages(),
     test_suite='tests'
 )

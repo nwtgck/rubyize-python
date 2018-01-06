@@ -41,7 +41,7 @@ class RubylikeTest(unittest.TestCase):
 
   def test_list_take(self):
     """
-    Test of list#inject
+    Test of list#take
     """
     actual = [1, 2, 3].take(2)
     expect = [1, 2]
@@ -49,12 +49,22 @@ class RubylikeTest(unittest.TestCase):
 
   def test_list_drop(self):
     """
-    Test of list#inject
+    Test of list#drop
     """
     actual = [1, 2, 3].drop(2)
     expect = [3]
     self.assertEqual(actual, expect)
 
+  def test_list_group_by(self):
+    """
+    Test of list#inject
+    """
+    actual = [1, 2, 3, 4, 5, 6].group_by(lambda e: e % 2 == 0)
+    expect = {True: [2, 4, 6], False: [1, 3, 5]}
+    self.assertEqual(actual, expect)
+
+
+  # TODO: Test other classes not only <class 'list'>
 
 def suite():
   suite = unittest.TestSuite()

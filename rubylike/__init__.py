@@ -32,6 +32,16 @@ def common_take(self, n):
 def common_drop(self, n):
     return self[n:]
 
+def common_group_by(iter, f):
+    dict = {}
+    for e in iter:
+        group = f(e)
+        if group in dict:
+            dict[group].append(e)
+        else:
+            dict[group] = [e]
+    return dict
+
 # === object class extensions ===
 def object_to_str(self):
     return str(self)
@@ -42,52 +52,57 @@ def list_length(self):
     return len(self)
 
 for method_name, func in [
-        ('to_list', common_to_list),
-        ('map',     common_map),
-        ('filter',  common_filter),
-        ('length',  list_length),
-        ('inject',  common_inject),
-        ('reduce',  common_inject),
-        ('take',    common_take),
-        ('drop',    common_drop),
+        ('to_list',  common_to_list),
+        ('map',      common_map),
+        ('filter',   common_filter),
+        ('length',   list_length),
+        ('inject',   common_inject),
+        ('reduce',   common_inject),
+        ('take',     common_take),
+        ('drop',     common_drop),
+        ('group_by', common_group_by),
     ]:
     curse(list, method_name, func)
 
 
 # === range class extensions ===
 for method_name, func in [
-        ('to_list', common_to_list),
-        ('map',    common_map),
-        ('filter', common_filter),
-        ('inject', common_inject),
-        ('reduce', common_inject),
-        ('take',   common_take),
-        ('drop', common_drop),
+        ('to_list',  common_to_list),
+        ('map',      common_map),
+        ('filter',   common_filter),
+        ('inject',   common_inject),
+        ('reduce',   common_inject),
+        ('take',     common_take),
+        ('drop',     common_drop),
+        ('group_by', common_group_by),
 ]:
     curse(range, method_name, func)
 
 
 # === map class extensions ===
 for method_name, func in [
-        ('to_list', common_to_list),
-        ('map',    common_map),
-        ('filter', common_filter),
-        ('inject', common_inject),
-        ('reduce', common_inject),
-        ('take',   common_take),
-        ('drop', common_drop),
+        ('to_list',  common_to_list),
+        ('map',      common_map),
+        ('filter',   common_filter),
+        ('inject',   common_inject),
+        ('reduce',   common_inject),
+        ('take',     common_take),
+        ('drop',     common_drop),
+        ('group_by', common_group_by),
+
 ]:
     curse(map, method_name, func)
 
 
 # === filter class extensions ===
 for method_name, func in [
-        ('to_list', common_to_list),
-        ('map',    common_map),
-        ('filter', common_filter),
-        ('inject', common_inject),
-        ('reduce', common_inject),
-        ('take',   common_take),
-        ('drop',   common_drop),
+        ('to_list',  common_to_list),
+        ('map',      common_map),
+        ('filter',   common_filter),
+        ('inject',   common_inject),
+        ('reduce',   common_inject),
+        ('take',     common_take),
+        ('drop',     common_drop),
+        ('group_by', common_group_by),
     ]:
     curse(filter, method_name, func)

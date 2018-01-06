@@ -71,6 +71,14 @@ class RubylikeTest(unittest.TestCase):
       expect = [1, 2, 4, 6]
       self.assertEqual(actual, expect)
 
+  def test_list_to_iter(self):
+      """
+      Test of list#to_iter
+      """
+      itr = [1, 2, 3, 4, 5].to_iter()
+      for actual, expect in zip(itr, [1, 2, 3, 4, 5]):
+        self.assertEqual(actual, expect)
+
   # TODO: Test other classes not only <class 'list'>
 
 def suite():

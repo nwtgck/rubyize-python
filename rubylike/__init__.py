@@ -26,45 +26,68 @@ def common_inject(self, a, b=None):
     return accum
 
 
-# === object class extensions ===
+def common_take(self, n):
+    return self[:n]
 
+def common_drop(self, n):
+    return self[n:]
+
+# === object class extensions ===
 def object_to_str(self):
     return str(self)
-
 curse(object, 'to_str', object_to_str)
 
-# === list class extesions ===
+# === list class extensions ===
 def list_length(self):
     return len(self)
 
-curse(list, 'map',    common_map)
-curse(list, 'filter', common_filter)
-curse(list, 'length', list_length)
-curse(list, 'inject', common_inject)
-curse(list, 'reduce', common_inject)
-
-# === range class extesions ===
-
-curse(range, "to_list", common_to_list)
-curse(range, "map",     common_map)
-curse(range, "filter",  common_filter)
-curse(range, 'inject',  common_inject)
-curse(range, 'reduce',  common_inject)
+for method_name, func in [
+        ('to_list', common_to_list),
+        ('map',     common_map),
+        ('filter',  common_filter),
+        ('length',  list_length),
+        ('inject',  common_inject),
+        ('reduce',  common_inject),
+        ('take',    common_take),
+        ('drop',    common_drop),
+    ]:
+    curse(list, method_name, func)
 
 
+# === range class extensions ===
+for method_name, func in [
+        ('to_list', common_to_list),
+        ('map',    common_map),
+        ('filter', common_filter),
+        ('inject', common_inject),
+        ('reduce', common_inject),
+        ('take',   common_take),
+        ('drop', common_drop),
+]:
+    curse(range, method_name, func)
 
-# === map class extesions ===
 
-curse(map, "to_list", common_to_list)
-curse(map, "map",     common_map)
-curse(map, "filter",  common_filter)
-curse(map, 'inject',  common_inject)
-curse(map, 'reduce',  common_inject)
+# === map class extensions ===
+for method_name, func in [
+        ('to_list', common_to_list),
+        ('map',    common_map),
+        ('filter', common_filter),
+        ('inject', common_inject),
+        ('reduce', common_inject),
+        ('take',   common_take),
+        ('drop', common_drop),
+]:
+    curse(map, method_name, func)
 
-# === filter class extesions ===
 
-curse(filter, "to_list", common_to_list)
-curse(filter, "map",     common_map)
-curse(filter, "filter",  common_filter)
-curse(filter, 'inject',  common_inject)
-curse(filter, 'reduce',  common_inject)
+# === filter class extensions ===
+for method_name, func in [
+        ('to_list', common_to_list),
+        ('map',    common_map),
+        ('filter', common_filter),
+        ('inject', common_inject),
+        ('reduce', common_inject),
+        ('take',   common_take),
+        ('drop',   common_drop),
+    ]:
+    curse(filter, method_name, func)

@@ -39,6 +39,22 @@ class RubylikeTest(unittest.TestCase):
     expect = 106
     self.assertEqual(actual, expect)
 
+  def test_list_take(self):
+    """
+    Test of list#inject
+    """
+    actual = [1, 2, 3].take(2)
+    expect = [1, 2]
+    self.assertEqual(actual, expect)
+
+  def test_list_drop(self):
+    """
+    Test of list#inject
+    """
+    actual = [1, 2, 3].drop(2)
+    expect = [3]
+    self.assertEqual(actual, expect)
+
 
 def suite():
   suite = unittest.TestSuite()

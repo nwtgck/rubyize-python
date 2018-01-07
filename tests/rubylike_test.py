@@ -79,6 +79,14 @@ class RubyizeTest(unittest.TestCase):
       for actual, expect in zip(itr, [1, 2, 3, 4, 5]):
         self.assertEqual(actual, expect)
 
+  def test_list_flat_map(self):
+    """
+        Test of list#flat_map
+        """
+    actual = [1, 2, 3].flat_map(lambda e: [e] * 2)
+    expect = [1, 1, 2, 2, 3, 3]
+    self.assertEqual(actual, expect)
+
 
 
 

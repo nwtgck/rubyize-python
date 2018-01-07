@@ -48,6 +48,11 @@ def common_compact(itr):
 def common_to_iter(itr):
     return iter(itr)
 
+def common_flat_map(itr, f):
+  for elem in itr:
+    for e in f(elem):
+      yield e
+
 # === object class extensions ===
 def object_to_str(self):
     return str(self)
@@ -73,6 +78,7 @@ for method_name, func in [
         ('group_by', common_group_by),
         ('compact',  wrap_list_func(common_compact)),
         ('to_iter',  common_to_iter),
+        ('flat_map', wrap_list_func(common_flat_map)),
     ]:
     curse(list, method_name, func)
 
@@ -80,10 +86,9 @@ for method_name, func in [
 # === Extensions of iterable classes ===
 
 # TODO: Add all builtin iterator classes in https://github.com/python/cpython/blob/5ce0a2a100909104836f53a2c8823006ec46f8ad/Lib/_collections_abc.py
-# Get <class 'list_iterator'>
 list_literator = type(iter([]))
-# Get <class 'range_iterator'>
 range_iterator = type(iter(range(0)))
+generator      = type((lambda: (yield))())
 
 for iterable_class in [
         range,
@@ -91,6 +96,7 @@ for iterable_class in [
         filter,
         zip,
         enumerate,
+        generator,
         list_literator,
         range_iterator,
     ]:
@@ -105,5 +111,6 @@ for iterable_class in [
             ('group_by', common_group_by),
             ('compact',  common_compact),
             ('to_iter',  common_to_iter),
+            ('flat_map', common_flat_map)
     ]:
         curse(iterable_class, method_name, func)

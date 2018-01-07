@@ -120,6 +120,18 @@ class RubyizeTest(unittest.TestCase):
     expect = []
     self.assertEqual(actual, expect)
 
+  def test_list_join(self):
+    """
+        Test of list#join
+        """
+    actual = [1, 2, 3, 4, 5].join(',')
+    expect = "1,2,3,4,5"
+    self.assertEqual(actual, expect)
+
+    actual = ["hello", "world"].join(', ')
+    expect = "hello, world"
+    self.assertEqual(actual, expect)
+
 
 
   def test_map_map(self):

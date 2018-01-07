@@ -79,6 +79,11 @@ def common_each_slice(itr, n):
   if tmp_list != []:
     yield tmp_list
 
+
+def common_join(itr, sep):
+  return sep.join(map(str, itr))
+
+
 # === object class extensions ===
 def object_to_str(self):
     return str(self)
@@ -107,6 +112,7 @@ for method_name, func in [
         ('flat_map',   wrap_list_func(common_flat_map)),
         ('each_cons',  wrap_list_func(common_each_cons)),
         ('each_slice', wrap_list_func(common_each_slice)),
+        ('join',       common_join),
     ]:
     curse(list, method_name, func)
 
@@ -142,5 +148,6 @@ for iterable_class in [
             ('flat_map',   common_flat_map),
             ('each_cons',  common_each_cons),
             ('each_slice', common_each_slice),
+            ('join',       common_join),
     ]:
         curse(iterable_class, method_name, func)

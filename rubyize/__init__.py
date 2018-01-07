@@ -53,6 +53,15 @@ def common_flat_map(itr, f):
     for e in f(elem):
       yield e
 
+def common_each_cons(itr, n):
+  tmp_list = []
+  for e in itr:
+    tmp_list.append(e)
+    if len(tmp_list) == n:
+      yield tmp_list
+      # Shift
+      tmp_list = tmp_list[1:]
+
 # === object class extensions ===
 def object_to_str(self):
     return str(self)
@@ -67,18 +76,19 @@ def list_length(self):
     return len(self)
 
 for method_name, func in [
-        ('to_list',  common_to_list),
-        ('map',      wrap_list_func(common_map)),
-        ('filter',   wrap_list_func(common_filter)),
-        ('length',   list_length),
-        ('inject',   common_inject),
-        ('reduce',   common_inject),
-        ('take',     wrap_list_func(common_take)),
-        ('drop',     wrap_list_func(common_drop)),
-        ('group_by', common_group_by),
-        ('compact',  wrap_list_func(common_compact)),
-        ('to_iter',  common_to_iter),
-        ('flat_map', wrap_list_func(common_flat_map)),
+        ('to_list',   common_to_list),
+        ('map',       wrap_list_func(common_map)),
+        ('filter',    wrap_list_func(common_filter)),
+        ('length',    list_length),
+        ('inject',    common_inject),
+        ('reduce',    common_inject),
+        ('take',      wrap_list_func(common_take)),
+        ('drop',      wrap_list_func(common_drop)),
+        ('group_by',  common_group_by),
+        ('compact',   wrap_list_func(common_compact)),
+        ('to_iter',   common_to_iter),
+        ('flat_map',  wrap_list_func(common_flat_map)),
+        ('each_cons', wrap_list_func(common_each_cons)),
     ]:
     curse(list, method_name, func)
 
@@ -101,16 +111,17 @@ for iterable_class in [
         range_iterator,
     ]:
     for method_name, func in [
-            ('to_list',  common_to_list),
-            ('map',      common_map),
-            ('filter',   common_filter),
-            ('inject',   common_inject),
-            ('reduce',   common_inject),
-            ('take',     common_take),
-            ('drop',     common_drop),
-            ('group_by', common_group_by),
-            ('compact',  common_compact),
-            ('to_iter',  common_to_iter),
-            ('flat_map', common_flat_map)
+            ('to_list',   common_to_list),
+            ('map',       common_map),
+            ('filter',    common_filter),
+            ('inject',    common_inject),
+            ('reduce',    common_inject),
+            ('take',      common_take),
+            ('drop',      common_drop),
+            ('group_by',  common_group_by),
+            ('compact',   common_compact),
+            ('to_iter',   common_to_iter),
+            ('flat_map',  common_flat_map),
+            ('each_cons', common_each_cons),
     ]:
         curse(iterable_class, method_name, func)

@@ -87,6 +87,17 @@ class RubyizeTest(unittest.TestCase):
     expect = [1, 1, 2, 2, 3, 3]
     self.assertEqual(actual, expect)
 
+  def test_list_each_cons(self):
+    """
+        Test of list#flat_each_cons
+        """
+    actual = [1, 2, 3, 4, 5].each_cons(3)
+    expect = [[1, 2, 3], [2, 3, 4], [3, 4, 5]]
+    self.assertEqual(actual, expect)
+
+    actual = [1, 2, 3, 4, 5].each_cons(6)
+    expect = []
+    self.assertEqual(actual, expect)
 
 
 

@@ -13,7 +13,7 @@ setup(
     description='Write Python in Ruby-like way',
     author='Ryo Ota',
     author_email='nwtgck@gmail.com',
-    install_requires=['forbiddenfruit'],
+    install_requires=open('requirements.txt').read().splitlines(),
     py_modules=["rubyize"],
     packages=find_packages(),
     test_suite='tests'

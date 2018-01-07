@@ -27,10 +27,15 @@ def common_inject(self, a, b=None):
 
 
 def common_take(self, n):
-    return self[:n]
+  for _, e in zip(range(n), self):
+    yield e
 
 def common_drop(self, n):
-    return self[n:]
+  # Drop
+  itr = iter(self)
+  for _ in range(n):
+    next(itr)
+  return itr
 
 def common_group_by(iter, f):
     dict = {}

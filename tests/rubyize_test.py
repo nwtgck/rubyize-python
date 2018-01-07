@@ -130,6 +130,22 @@ class RubyizeTest(unittest.TestCase):
     for actual, expect in zip(mapped, [2, 4, 6]):
       self.assertEqual(actual, expect)
 
+  def test_map_take(self):
+    """
+    Test of map#take
+    """
+    mapped = map(lambda e: e, [1, 2, 3]).take(2)
+    for actual, expect in zip(mapped, [1, 2]):
+      self.assertEqual(actual, expect)
+
+  def test_map_drop(self):
+    """
+    Test of map#drop
+    """
+    mapped = map(lambda e: e, [1, 2, 3]).drop(2)
+    for actual, expect in zip(mapped, [3]):
+      self.assertEqual(actual, expect)
+
 
   # TODO: Test other classes not only <class 'list'>
 

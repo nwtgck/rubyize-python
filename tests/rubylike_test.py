@@ -100,6 +100,27 @@ class RubyizeTest(unittest.TestCase):
     self.assertEqual(actual, expect)
 
 
+  def test_list_each_slice(self):
+    """
+        Test of list#flat_each_slice
+        """
+    actual = [1, 2, 3, 4, 5].each_slice(2)
+    expect = [[1, 2], [3, 4], [5]]
+    self.assertEqual(actual, expect)
+
+    actual = [1, 2, 3, 4, 5, 6].each_slice(2)
+    expect = [[1, 2], [3, 4], [5, 6]]
+    self.assertEqual(actual, expect)
+
+    actual = [1].each_slice(2)
+    expect = [[1]]
+    self.assertEqual(actual, expect)
+
+    actual = [].each_slice(2)
+    expect = []
+    self.assertEqual(actual, expect)
+
+
 
   def test_map_map(self):
     """

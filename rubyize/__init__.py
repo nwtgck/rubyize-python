@@ -1,4 +1,7 @@
 from forbiddenfruit import curse
+import inspect
+import itertools
+import collections
 
 # === common extensions ===
 
@@ -124,6 +127,45 @@ list_literator = type(iter([]))
 range_iterator = type(iter(range(0)))
 generator      = type((lambda: (yield))())
 
+def extend_for_iterable(iterable_class):
+  """
+  Extend a class for iterable
+  :param iterable_class:
+  :return:
+  """
+  for method_name, func in [
+    ('to_list', common_to_list),
+    ('map', common_map),
+    ('filter', common_filter),
+    ('inject', common_inject),
+    ('reduce', common_inject),
+    ('take', common_take),
+    ('drop', common_drop),
+    ('group_by', common_group_by),
+    ('compact', common_compact),
+    ('to_iter', common_to_iter),
+    ('flat_map', common_flat_map),
+    ('each_cons', common_each_cons),
+    ('each_slice', common_each_slice),
+    ('join', common_join),
+  ]:
+    curse(iterable_class, method_name, func)
+
+def extend_module_for_iterable(module):
+  """
+  Extend all classes in a module for iterable
+  :param module:
+  :return:
+  """
+  # (from: https://stackoverflow.com/a/1796247/2885946)
+  # (from: https://stackoverflow.com/a/5268474/2885946)
+  for name, obj in inspect.getmembers(module):
+    if inspect.isclass(obj):
+      clazz   = obj
+      is_iter = callable(getattr(clazz, "__iter__", None))
+      if is_iter:
+        extend_for_iterable(clazz)
+
 for iterable_class in [
         range,
         map,
@@ -134,20 +176,11 @@ for iterable_class in [
         list_literator,
         range_iterator,
     ]:
-    for method_name, func in [
-            ('to_list',    common_to_list),
-            ('map',        common_map),
-            ('filter',     common_filter),
-            ('inject',     common_inject),
-            ('reduce',     common_inject),
-            ('take',       common_take),
-            ('drop',       common_drop),
-            ('group_by',   common_group_by),
-            ('compact',    common_compact),
-            ('to_iter',    common_to_iter),
-            ('flat_map',   common_flat_map),
-            ('each_cons',  common_each_cons),
-            ('each_slice', common_each_slice),
-            ('join',       common_join),
-    ]:
-        curse(iterable_class, method_name, func)
+    extend_for_iterable(iterable_class)
+
+# Extend itertools module
+extend_module_for_iterable(itertools)
+# Extend collections module
+extend_module_for_iterable(collections)
+
+

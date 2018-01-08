@@ -1,4 +1,6 @@
 import unittest
+import itertools
+
 import rubyize
 
 class RubyizeTest(unittest.TestCase):
@@ -156,6 +158,14 @@ class RubyizeTest(unittest.TestCase):
     """
     mapped = map(lambda e: e, [1, 2, 3]).drop(2)
     for actual, expect in zip(mapped, [3]):
+      self.assertEqual(actual, expect)
+
+  def test_islice_map(self):
+    """
+    Test of islice#map
+    """
+    res = itertools.islice([1, 2, 3], 0, None).map(lambda x: x * 2)
+    for actual, expect in zip(res, [2, 4, 6]):
       self.assertEqual(actual, expect)
 
 

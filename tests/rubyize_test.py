@@ -144,6 +144,14 @@ class RubyizeTest(unittest.TestCase):
     for actual, expect in zip(mapped, [2, 4, 6]):
       self.assertEqual(actual, expect)
 
+  def test_map_length(self):
+    """
+    Test of map#length
+    """
+    actual = map(lambda e: e, [1, 2, 3]).length()
+    expect = 3
+    self.assertEqual(actual, expect)
+
   def test_map_take(self):
     """
     Test of map#take

@@ -14,6 +14,15 @@ def common_map(self, f):
 def common_filter(self, p):
     return filter(p, self)
 
+def common_length(itr):
+  if hasattr(itr, "__len__"):
+    return len(itr)
+  else:
+    l = 0
+    for _ in itr:
+      l += 1
+    return l
+
 def common_inject(self, a, b=None):
     if b is None:
         zero = self[0]
@@ -137,6 +146,7 @@ def extend_for_iterable(iterable_class):
     ('to_list', common_to_list),
     ('map', common_map),
     ('filter', common_filter),
+    ('length', common_length),
     ('inject', common_inject),
     ('reduce', common_inject),
     ('take', common_take),

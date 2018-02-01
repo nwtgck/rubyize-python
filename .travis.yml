@@ -15,7 +15,9 @@ install:
   - travis_wait travis_retry pip install -r requirements.txt # (from: https://github.com/dnouri/nolearn/blob/master/.travis.yml)
 
 script:
-  - coverage run --source=rubyize setup.py test
+  - python3 setup.py test
+#  (This is for coveralls: If this repository is public, Recomment it out and remove 'python3 setup.py test')
+#  - coverage run --source=rubyize setup.py test
 
 #  # Example run
 #  - pip3 install --upgrade git+https://github.com/nwtgck/rubyize-python.git#$TRAVIS_COMMIT

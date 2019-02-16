@@ -8,11 +8,22 @@
 
 Write Python in Ruby-like way
 
+## Installation
+
+```bash
+pip3 install toml
+pip3 install git+https://github.com/nwtgck/rubyize-python
+```
+
 ## Usages
+
+Here is an import-magic for adding methods to collection classes such as `list`.
 
 ```py
 import rubyize
+```
 
+```py
 [1, 2, 3].length()
 # => 3
 
@@ -59,8 +70,16 @@ import rubyize
 map(lambda e: e, [1, 2, 3]).map(lambda x: x * 2)
 map(lambda e: e, [1, 2, 3]).length()
 map(lambda e: e, [1, 2, 3]).take(2)
-# ...
+...
 ```
+
+## Why Rubyize?
+
+Collection API of Ruby is very rich! Ruby has prepared a lot of methods. So, users can write easily about what they want to do. Users make method chains, which are directly connected to our brain thinking rather than built-in `len(mylist)`, `len(mylist)`  and etc, I think.
+
+## Caution
+
+Rubyize can destroy the Python culture. I think that Python is designed for everyone writing in the same way. However, Rubyize allows users to write code in different ways. Readability in terms of the Python culture can be worse. Thus, I think Rubyize should not be used in production. Rubyize should be used in disposable code or etc.
 
 ## Forbidden Fruit
 

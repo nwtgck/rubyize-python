@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "b8e3fd491ecae16030076dc8fea4f364043f465263cec35720bcc6c13d791681"
+            "sha256": "0ec86ec738197fb2a57d1a1a8ec0d0e4365471691d60566a8283498a526e0df9"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -18,10 +18,10 @@
     "default": {
         "forbiddenfruit": {
             "hashes": [
-                "sha256:09ee1959fa34936c15417defa28bfd09cf88ad54c15454bc863d465ed42b8922"
+                "sha256:1188a07cc24a9bd2c529dad06490b80a6fc88cde968af4d7861da81686b2cc8c"
             ],
             "index": "pypi",
-            "version": "==0.1.2"
+            "version": "==0.1.3"
         }
     },
     "develop": {
